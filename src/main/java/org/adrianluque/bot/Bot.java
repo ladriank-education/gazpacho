@@ -20,6 +20,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
+import java.security.*;
+
 public class Bot {
 
     public class Config {
@@ -57,7 +59,7 @@ public class Bot {
 
         public ArrayList<String> getActionParameters() {
             ArrayList<String> parametersList = null;
-            try{
+            try {
                 JsonReader jsonReader = new JsonReader(new FileReader("commands.json"));
                 Gson gson = new Gson();
                 JsonArray jsonArray = gson.fromJson(jsonReader, JsonArray.class);
@@ -70,8 +72,9 @@ public class Bot {
                         parametersList.add(parameter.getAsString());
                     }
                 }
-            } catch (IOException e) {}
-            
+            } catch (IOException e) {
+            }
+
             return parametersList;
         }
 
